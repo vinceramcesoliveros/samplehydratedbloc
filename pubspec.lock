@@ -121,7 +121,7 @@ packages:
     description:
       path: hive
       ref: HEAD
-      resolved-ref: "9152be9d066bb5765d8d2fe5477d9c620471a50c"
+      resolved-ref: a3ae7d4380810377c4a65548fe25ab7227901722
       url: "https://github.com/orsenkucher/hive.git"
     source: git
     version: "1.4.1+1"
