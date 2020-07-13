@@ -1,66 +1,33 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'user.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 class User extends Equatable {
   final String name;
   final Address address;
   const User({this.name, this.address});
 
-  @override
-  List<Object> get props => throw UnimplementedError();
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'address': address?.toMap(),
-    };
-  }
-
-  static User fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
-    return User(
-      name: map['name'],
-      address: Address.fromMap(map['address']),
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  static User fromJson(String source) => fromMap(json.decode(source));
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 
   @override
-  bool get stringify => true;
+  List<Object> get props => [name, address];
 }
 
+@JsonSerializable(explicitToJson: true)
 class Address extends Equatable {
   final String streetName;
   final String city;
   final int zipCode;
   const Address({this.streetName, this.city, this.zipCode});
 
-  Map<String, dynamic> toMap() {
-    return {
-      'streetName': streetName,
-      'city': city,
-      'zipCode': zipCode,
-    };
-  }
+  factory Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
 
-  static Address fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
-    return Address(
-      streetName: map['streetName'],
-      city: map['city'],
-      zipCode: map['zipCode'],
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  static Address fromJson(String source) => fromMap(json.decode(source));
+  Map<String, dynamic> toJson() => _$AddressToJson(this);
 
   Address copyWith({
     String streetName,
@@ -76,6 +43,4 @@ class Address extends Equatable {
 
   @override
   List<Object> get props => [streetName, city, zipCode];
-  @override
-  bool get stringify => true;
 }
