@@ -35,13 +35,13 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
     if (state is UserIncompleteState) {
       return {
         'complete': false,
-        'user': state.user.toMap(),
+        'user': state.user.toJson(),
       };
     }
     if (state is UserCompleteState) {
       return {
         'complete': true,
-        'user': state.user.toMap(),
+        'user': state.user.toJson(),
       };
     }
     return null;
