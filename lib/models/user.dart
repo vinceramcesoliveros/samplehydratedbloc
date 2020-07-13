@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
@@ -8,27 +6,25 @@ class User extends Equatable {
   const User({this.name, this.address});
 
   @override
-  List<Object> get props => throw UnimplementedError();
+  List<Object> get props => [name, address];
 
-  Map<String, dynamic> toMap() {
-    return {
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
       'name': name,
-      'address': address?.toMap(),
+      'address': address?.toJson(),
     };
   }
 
-  static User fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
+  static User fromJson(Map<String, dynamic> json) {
+    if (json == null) return null;
 
     return User(
-      name: map['name'],
-      address: Address.fromMap(map['address']),
+      name: json['name'] as String,
+      address: Address.fromJson(
+        Map<String, dynamic>.from(json['address'] as Map),
+      ),
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  static User fromJson(String source) => fromMap(json.decode(source));
 
   @override
   bool get stringify => true;
@@ -40,27 +36,23 @@ class Address extends Equatable {
   final int zipCode;
   const Address({this.streetName, this.city, this.zipCode});
 
-  Map<String, dynamic> toMap() {
-    return {
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
       'streetName': streetName,
       'city': city,
       'zipCode': zipCode,
     };
   }
 
-  static Address fromMap(Map<String, dynamic> map) {
+  static Address fromJson(Map<String, dynamic> map) {
     if (map == null) return null;
 
     return Address(
-      streetName: map['streetName'],
-      city: map['city'],
-      zipCode: map['zipCode'],
+      streetName: map['streetName'] as String,
+      city: map['city'] as String,
+      zipCode: map['zipCode'] as int,
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  static Address fromJson(String source) => fromMap(json.decode(source));
 
   Address copyWith({
     String streetName,
@@ -76,6 +68,7 @@ class Address extends Equatable {
 
   @override
   List<Object> get props => [streetName, city, zipCode];
+
   @override
   bool get stringify => true;
 }
