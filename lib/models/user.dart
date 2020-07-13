@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
@@ -37,6 +35,7 @@ class Address extends Equatable {
   const Address({this.streetName, this.city, this.zipCode});
 
   Map<String, dynamic> toJson() {
+    // return <String, dynamic>{};
     return {
       'streetName': streetName,
       'city': city,
@@ -45,6 +44,7 @@ class Address extends Equatable {
   }
 
   static Address fromJson(Map<String, dynamic> map) {
+    // return Address();
     if (map == null) return null;
 
     return Address(
