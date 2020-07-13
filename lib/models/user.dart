@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
 
-@JsonSerializable(explicitToJson: true, anyMap: true)
+@JsonSerializable()
 class User extends Equatable {
   final String name;
   final Address address;
@@ -17,7 +17,7 @@ class User extends Equatable {
   List<Object> get props => [name, address];
 }
 
-@JsonSerializable(explicitToJson: true, anyMap: true)
+@JsonSerializable()
 class Address extends Equatable {
   final String streetName;
   final String city;
