@@ -2,6 +2,16 @@
 
 A new Flutter project.
 
+## Steps to Reproduce:
+1. Launch the App in Debug Mode
+2. Tap Save Icon
+3. Hot Restart
+
+It will print error
+>Unhandled error type '_InternalLinkedHashMap<dynamic, dynamic>' is not a subtype of type 'String' occurred in bloc Instance of 'UserBloc'.
+
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
