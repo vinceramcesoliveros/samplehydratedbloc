@@ -119,29 +119,25 @@ packages:
   hive:
     dependency: transitive
     description:
-      path: hive
-      ref: HEAD
-      resolved-ref: a3ae7d4380810377c4a65548fe25ab7227901722
-      url: "https://github.com/orsenkucher/hive.git"
-    source: git
+      name: hive
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "1.4.1+1"
   hydrated_bloc:
     dependency: "direct main"
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "37920c62c6c728e68ae9221e95ae1fb09a8bace3"
+      resolved-ref: "76a901960f41da541ec941d831b224249d1a8538"
       url: "https://github.com/orsenkucher/hydrated_bloc.git"
     source: git
     version: "5.0.3"
   hydrated_cubit:
     dependency: transitive
     description:
-      path: "packages/hydrated_cubit"
-      ref: HEAD
-      resolved-ref: "3d65ff5edfa12c37dd95b214706d70df9cc19bd1"
-      url: "https://github.com/orsenkucher/cubit.git"
-    source: git
+      name: hydrated_cubit
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.1.4"
   image:
     dependency: transitive
