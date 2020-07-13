@@ -8,27 +8,23 @@ class User extends Equatable {
   const User({this.name, this.address});
 
   @override
-  List<Object> get props => throw UnimplementedError();
+  List<Object> get props => [name, address];
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'name': name,
-      'address': address?.toMap(),
+      'address': address?.toJson(),
     };
   }
 
-  static User fromMap(Map<String, dynamic> map) {
+  static User fromJson(Map<String, dynamic> map) {
     if (map == null) return null;
 
     return User(
       name: map['name'],
-      address: Address.fromMap(map['address']),
+      address: Address.fromJson(map['address']),
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  static User fromJson(String source) => fromMap(json.decode(source));
 
   @override
   bool get stringify => true;
@@ -40,7 +36,7 @@ class Address extends Equatable {
   final int zipCode;
   const Address({this.streetName, this.city, this.zipCode});
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'streetName': streetName,
       'city': city,
@@ -48,7 +44,7 @@ class Address extends Equatable {
     };
   }
 
-  static Address fromMap(Map<String, dynamic> map) {
+  static Address fromJson(Map<String, dynamic> map) {
     if (map == null) return null;
 
     return Address(
@@ -57,10 +53,6 @@ class Address extends Equatable {
       zipCode: map['zipCode'],
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  static Address fromJson(String source) => fromMap(json.decode(source));
 
   Address copyWith({
     String streetName,
