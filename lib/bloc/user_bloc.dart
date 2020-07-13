@@ -20,26 +20,26 @@ class UserBloc extends HydratedBloc<UserEvent, UserState> {
   }
 
   @override
-  UserState fromJson(Map<String, Object> json) {
+  UserState fromJson(Map<String, dynamic> json) {
     if (json == null) {
       return UserInitial();
     } else if (json['complete'] as bool ?? false) {
-      return UserCompleteState(User.fromJson(json));
+      return UserCompleteState(User.fromJson(json['user']));
     } else {
-      return UserIncompleteState(User.fromJson(json));
+      return UserCompleteState(User.fromJson(json['user']));
     }
   }
 
   @override
   Map<String, Object> toJson(UserState state) {
     if (state is UserIncompleteState) {
-      return {
+      return <String, dynamic>{
         'complete': false,
         'user': state.user.toJson(),
       };
     }
     if (state is UserCompleteState) {
-      return {
+      return <String, dynamic>{
         'complete': true,
         'user': state.user.toJson(),
       };

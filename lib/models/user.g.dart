@@ -6,12 +6,14 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) {
+User _$UserFromJson(Map json) {
   return User(
     name: json['name'] as String,
     address: json['address'] == null
         ? null
-        : Address.fromJson(json['address'] as Map<String, dynamic>),
+        : Address.fromJson((json['address'] as Map)?.map(
+            (k, e) => MapEntry(k as String, e),
+          )),
   );
 }
 
@@ -20,7 +22,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'address': instance.address?.toJson(),
     };
 
-Address _$AddressFromJson(Map<String, dynamic> json) {
+Address _$AddressFromJson(Map json) {
   return Address(
     streetName: json['streetName'] as String,
     city: json['city'] as String,
