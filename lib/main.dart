@@ -81,6 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
       name: "John Wick",
       address: address,
     );
-    context.bloc<UserBloc>().add(SaveUserEvent(user: user));
+    // ignore: close_sinks
+    final bloc = context.bloc<UserBloc>();
+    bloc.add(SaveUserEvent(user: user));
   }
 }
