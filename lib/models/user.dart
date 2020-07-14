@@ -13,6 +13,7 @@ class User extends Equatable {
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
+
   @override
   List<Object> get props => [name, address];
 }
@@ -43,4 +44,5 @@ class Address extends Equatable {
 
   @override
   List<Object> get props => [streetName, city, zipCode];
+
 }

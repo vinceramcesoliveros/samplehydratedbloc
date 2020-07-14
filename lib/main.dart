@@ -55,8 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(state.user.toString(),
                       style: TextStyle(color: Colors.green))
                 else if (state is UserIncompleteState)
-                  Text(state.user.toString(),
-                      style: TextStyle(color: Colors.red))
+                  Text(
+                    state.user.toString(),
+                    style: TextStyle(color: Colors.red),
+                  )
               ],
               mainAxisAlignment: MainAxisAlignment.center,
             ),
@@ -81,6 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
       name: "John Wick",
       address: address,
     );
-    context.bloc<UserBloc>().add(SaveUserEvent(user: user));
+    // ignore: close_sinks
+    final bloc = context.bloc<UserBloc>();
+    bloc.add(SaveUserEvent(user: user));
   }
 }
