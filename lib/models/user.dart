@@ -1,58 +1,34 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'user.g.dart';
+
+@JsonSerializable()
 class User extends Equatable {
   final String name;
   final Address address;
   const User({this.name, this.address});
 
+  factory User.fromJson(Map<dynamic, dynamic> json) => _$UserFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserToJson(this);
+
+
   @override
   List<Object> get props => [name, address];
-
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'name': name,
-      'address': address?.toJson(),
-    };
-  }
-
-  static User fromJson(Map<String, dynamic> json) {
-    if (json == null) return null;
-
-    return User(
-      name: json['name'] as String,
-      address: Address.fromJson(
-        Map<String, dynamic>.from(json['address'] as Map),
-      ),
-    );
-  }
-
-  @override
-  bool get stringify => true;
 }
 
+@JsonSerializable()
 class Address extends Equatable {
   final String streetName;
   final String city;
   final int zipCode;
   const Address({this.streetName, this.city, this.zipCode});
 
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{
-      'streetName': streetName,
-      'city': city,
-      'zipCode': zipCode,
-    };
-  }
+  factory Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
 
-  static Address fromJson(Map<String, dynamic> map) {
-    if (map == null) return null;
-
-    return Address(
-      streetName: map['streetName'] as String,
-      city: map['city'] as String,
-      zipCode: map['zipCode'] as int,
-    );
-  }
+  Map<String, dynamic> toJson() => _$AddressToJson(this);
 
   Address copyWith({
     String streetName,
@@ -69,6 +45,4 @@ class Address extends Equatable {
   @override
   List<Object> get props => [streetName, city, zipCode];
 
-  @override
-  bool get stringify => true;
 }
