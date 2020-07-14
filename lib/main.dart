@@ -53,8 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(state.user.toString(),
                       style: TextStyle(color: Colors.green))
                 else if (state is UserIncompleteState)
-                  Text(state.user.toString(),
-                      style: TextStyle(color: Colors.red))
+                  Text(
+                    state.user.toString(),
+                    style: TextStyle(color: Colors.red),
+                  )
               ],
               mainAxisAlignment: MainAxisAlignment.center,
             ),

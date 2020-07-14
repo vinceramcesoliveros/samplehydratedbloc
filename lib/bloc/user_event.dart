@@ -8,6 +8,7 @@ abstract class UserEvent extends Equatable {
 class SaveUserEvent extends UserEvent {
   final User user;
   const SaveUserEvent({this.user});
+
   @override
   List<Object> get props => [user];
 }

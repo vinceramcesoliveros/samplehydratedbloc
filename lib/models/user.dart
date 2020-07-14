@@ -9,18 +9,20 @@ class User extends Equatable {
   List<Object> get props => [name, address];
 
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'name': name,
       'address': address?.toJson(),
     };
   }
 
-  static User fromJson(Map<String, dynamic> map) {
-    if (map == null) return null;
+  static User fromJson(Map<String, dynamic> json) {
+    if (json == null) return null;
 
     return User(
-      name: map['name'],
-      address: Address.fromJson(map['address']),
+      name: json['name'] as String,
+      address: Address.fromJson(
+        Map<String, dynamic>.from(json['address'] as Map),
+      ),
     );
   }
 
@@ -35,8 +37,7 @@ class Address extends Equatable {
   const Address({this.streetName, this.city, this.zipCode});
 
   Map<String, dynamic> toJson() {
-    // return <String, dynamic>{};
-    return {
+    return <String, dynamic>{
       'streetName': streetName,
       'city': city,
       'zipCode': zipCode,
@@ -44,13 +45,12 @@ class Address extends Equatable {
   }
 
   static Address fromJson(Map<String, dynamic> map) {
-    // return Address();
     if (map == null) return null;
 
     return Address(
-      streetName: map['streetName'],
-      city: map['city'],
-      zipCode: map['zipCode'],
+      streetName: map['streetName'] as String,
+      city: map['city'] as String,
+      zipCode: map['zipCode'] as int,
     );
   }
 
@@ -68,6 +68,7 @@ class Address extends Equatable {
 
   @override
   List<Object> get props => [streetName, city, zipCode];
+
   @override
   bool get stringify => true;
 }
